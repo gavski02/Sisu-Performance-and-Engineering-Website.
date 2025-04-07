@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - SISU</title> <meta name="description" content="Buy top-tier performance parts from SISU. Browse our selection of suspension, exhaust, & steering components for your vehicle build. Quality guaranteed.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://cdn.snipcart.com" />
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="SISU Logo">
+            </div>
+            <div class="header-controls">
+                <nav class="nav">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#" class="snipcart-checkout mobile-cart-link">Cart (<span class="snipcart-items-count">0</span>)</a>
+                </nav>
+                <button class="snipcart-checkout btn original-cart-btn">
+                    Cart (<span class="snipcart-items-count">0</span>)
+                </button>
+                 <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content-wrapper">
+            <div class="products-page-layout">
+
+                <aside class="filter-sidebar scroll-fade-in">
+                    <h2>Filter By</h2>
+
+                    <div class="filter-group">
+                        <h3>Availability</h3>
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="availability" value="in-stock"> In Stock</label>
+                            <label><input type="checkbox" name="availability" value="out-of-stock"> Out of Stock</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Price</h3>
+                        <div class="price-range-filter">
+                            <label for="min-price">Min:</label>
+                            <input type="number" id="min-price" name="min-price" placeholder="$0" min="0">
+                            <label for="max-price">Max:</label>
+                            <input type="number" id="max-price" name="max-price" placeholder="Any" min="0">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Category</h3>
+                        <div class="filter-options" id="category-filter-options">
+                            <p>Loading categories...</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="products-main-content">
+                    <div class="products-header scroll-fade-in">
+                        <h1 class="products-heading">Our Products</h1>
+                        <div class="products-controls">
+                             <div id="active-filters">
+                                 </div>
+                            <div class="sort-controls">
+                                 <span id="product-count-display"></span>
+                                <span>Sort by:</span>
+                                <select id="sort-select">
+                                    <option value="default">Default</option>
+                                    <option value="price-asc">Price: Low to High</option>
+                                    <option value="price-desc">Price: High to Low</option>
+                                    <option value="alpha-asc">Name: A to Z</option>
+                                    <option value="alpha-desc">Name: Z to A</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-grid" id="product-grid">
+                         <div class="no-products-message" style="display: none;">No products match your filters.</div>
+                         
+                         <div class="product-card scroll-fade-in" data-category="Bushing Kit" data-price="75.00" data-availability="in-stock">
+                            <img src="assets/product1_placeholder.jpg" alt="Suspension Bushing Kit">
+                            <div class="product-info">
+                                <h3>Suspension Bushing Kit</h3>
+                                <p class="product-price">$75.00</p>
+                                <button
+                                    class="snipcart-add-item add-to-cart-btn"
+                                    data-item-id="prod1-bushings"
+                                    data-item-price="75.00"
+                                    data-item-url="/products.html"  
+                                    data-item-name="Suspension Bushing Kit"
+                                    data-item-image="/assets/product1_placeholder.jpg"> 
+                                    Add to Cart
+                                </button>
+                            </div>
+                         </div>
+
+                         <div class="product-card scroll-fade-in" data-category="Exhaust Manifold" data-price="350.50" data-availability="in-stock">
+                            <img src="assets/product2_placeholder.jpg" alt="Performance Exhaust Manifold">
+                            <div class="product-info">
+                                <h3>Performance Exhaust Manifold</h3>
+                                <p class="product-price">$350.50</p>
+                                <button
+                                    class="snipcart-add-item add-to-cart-btn"
+                                    data-item-id="prod2-manifold"
+                                    data-item-price="350.50"
+                                    data-item-url="/products.html" 
+                                    data-item-name="Performance Exhaust Manifold"
+                                    data-item-image="/assets/product2_placeholder.jpg"> 
+                                    Add to Cart
+                                </button>
+                            </div>
+                         </div>
+
+                         <div class="product-card scroll-fade-in" data-category="Power Steering" data-price="199.99" data-availability="out-of-stock">
+                            <img src="assets/product3_placeholder.jpg" alt="Upgraded Power Steering Pump">
+                            <div class="product-info">
+                                <h3>Upgraded Power Steering Pump</h3>
+                                <p class="product-price">$199.99</p>
+                                <button
+                                    class="snipcart-add-item add-to-cart-btn"
+                                    data-item-id="prod3-pump"
+                                    data-item-price="199.99"
+                                    data-item-url="/products.html" 
+                                    data-item-name="Upgraded Power Steering Pump"
+                                    data-item-image="/assets/product3_placeholder.jpg"> 
+                                    Add to Cart
+                                </button>
+                            </div>
+                         </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
+
+    <div hidden id="snipcart" data-api-key="Y2RmMjZiYzktNTk3NS00ZTIzLWJlM2UtNGViNTBjZDA0OGU1NjM4Nzg1NTg1ODkyNjE5ODY1" data-cart-style="show-sidebar">
+    </div>
+    <script defer src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

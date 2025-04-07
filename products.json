@@ -1,0 +1,23 @@
+[
+    {
+      "id": "prod1-bushings",
+      "name": "Suspension Bushing Kit",
+      "price": 75.00,
+      "url": "/products.html", 
+      "image": "/assets/product1_placeholder.jpg"
+    },
+    {
+      "id": "prod2-manifold",
+      "name": "Performance Exhaust Manifold",
+      "price": 350.50,
+      "url": "/products.html",
+      "image": "/assets/product2_placeholder.jpg"
+    },
+    {
+      "id": "prod3-pump",
+      "name": "Upgraded Power Steering Pump",
+      "price": 199.99,
+      "url": "/products.html",
+      "image": "/assets/product3_placeholder.jpg"
+    }
+  ]
