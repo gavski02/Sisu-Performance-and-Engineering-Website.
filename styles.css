@@ -45,7 +45,7 @@ html, body {
     scroll-behavior: smooth;
 
     /* --- Global Fixed Background Moved Here --- */
-    background-image: url('assets/background.jpg'); /* ADJUST FILENAME if needed */
+    background-image: url('assets/background.webp'); /* ADJUST FILENAME if needed */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -536,7 +536,6 @@ textarea.form-control {
     border-radius: var(--border-radius-sm); /* Or match card's 12px if preferred */
     margin-bottom: 20px; /* Increased space below image */
     object-fit: cover;
-    height: 200px;
     background-color: #eee;
     display: block;
     /* --- Add transition for image scaling --- */
