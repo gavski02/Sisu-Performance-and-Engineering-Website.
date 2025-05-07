@@ -580,4 +580,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } // End of contact form check
 
+
+        // --- Footer Current Year ---
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
 }); // End of DOMContentLoaded listener

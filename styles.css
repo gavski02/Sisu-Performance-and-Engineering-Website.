@@ -13,8 +13,8 @@
     --light-text-color: #555;
     --lighter-text-color: #888;
     --border-color: #ddd;
-    --sidebar-bg: #f9f9f9; /* Keep variable, but override below */
-    --body-bg: #fff; /* Background for elements on top of image */
+    --sidebar-bg: #f9f9f9;
+    --body-bg: #fff; /* Solid white for card backgrounds at this stage */
     --error-color: #dc3545;
     --success-color: #28a745;
     --focus-ring-color: rgba(193, 39, 45, 0.2);
@@ -35,83 +35,64 @@
 }
 
 html, body {
-    /* Removed height: 100%; */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     font-family: var(--font-stack);
     color: var(--text-color);
     line-height: 1.6;
     scroll-behavior: smooth;
-
-    /* --- Global Fixed Background Moved Here --- */
-    background-image: url('assets/background.webp'); /* ADJUST FILENAME if needed */
+    background-image: url('assets/background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Fixed background on body */
-    /* ----------------------------------------- */
+    background-attachment: fixed;
 }
 
 .container {
-    /* --- Background Removed From Here, Set to Transparent --- */
     background-color: transparent;
-    /* ----------------------------------------------------- */
-
-    /* Layout styles */
     position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 70px; /* Space for footer */
-
-    /* --- ADJUST padding-top for fixed header --- */
-    padding-top: var(--header-height); /* Exactly header height */
-    /* -------------------------------------------- */
+    padding-top: var(--header-height);
+    /* padding-bottom for footer was experimental then, relying on margin-top of footer */
 }
-
-/* Optional: Global Overlay (if needed, apply to body or container) */
-/* body::before { ... } or .container::before { ... } */
-
 
 /* Header Styles */
 .header-container {
-    position: fixed; /* Use fixed positioning */
-    top: 0;           /* Stays at the top */
-    width: 100%;      /* Crucial for fixed position */
-    background-color: rgba(255, 255, 255, 0.9); /* Adjust alpha for readability */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: var(--box-shadow-sm);
-    z-index: 1000;      /* Ensures it stays on top of other content */
+    z-index: 1000;
     padding: 10px var(--content-gap);
-    height: var(--header-height); /* Use variable */
+    height: var(--header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background-color var(--transition-speed) ease;
 }
 
-/* Style for when header is scrolled */
 .header-container.header-scrolled {
-    background-color: rgba(255, 255, 255, 0.98); /* Slightly more opaque when scrolled */
+    background-color: rgba(255, 255, 255, 0.98);
 }
 
 .logo {
     width: auto;
     height: calc(var(--header-height) - 20px);
-    max-width: 300px; /* Default max-width for desktop */
+    max-width: 300px;
     display: flex;
     align-items: center;
 }
 
 .logo img {
-    display: block; /* Keep this */
-    max-width: 100%; /* Make image responsive to container width */
-    height: auto; /* Let height adjust automatically */
-    /* Remove or comment out the old max-height and width: auto */
-    /* max-height: 100%; */
-    /* width: auto; */
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .nav {
@@ -146,7 +127,7 @@ html, body {
     justify-content: space-around;
     cursor: pointer;
     padding: 0;
-    z-index: 1001; /* Above header content */
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -158,25 +139,22 @@ html, body {
     border-radius: 2px;
 }
 
-/* Hamburger Animation */
 .hamburger.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 
-/* Header Controls Container */
 .header-controls {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/* Mobile Nav & Header Adjustments */
 @media (max-width: 992px) {
     .nav {
         display: none;
         flex-direction: column;
-        position: absolute; /* Position relative to header */
-        top: var(--header-height); /* Position below header */
+        position: absolute;
+        top: var(--header-height);
         left: 0;
         width: 100%;
         background: rgba(255, 255, 255, 0.99);
@@ -184,13 +162,12 @@ html, body {
         box-shadow: var(--box-shadow-md);
         align-items: center;
         border-top: 1px solid var(--border-color);
-        z-index: 999; /* Below header z-index */
+        z-index: 999;
     }
     .nav.active {
-        display: flex; /* Now handled by JS adding class */
-        align-items: center; /* Align items centrally if desired */
+        display: flex;
+        align-items: center;
     }
-
     .nav a {
         font-size: 1.2em;
         margin: 15px 0;
@@ -200,84 +177,70 @@ html, body {
     .nav a:focus {
         color: var(--primary-color);
     }
-
     .hamburger {
         display: flex;
     }
-
-    /* Hide the original cart button when hamburger is active */
     .header-controls > .original-cart-btn {
         display: none;
     }
-
-    /* Style the new cart link within the mobile nav menu */
-    .nav .mobile-cart-link {
-        /* Inherits base '.nav a' styles */
-    }
-
-    /* --- ADJUST LOGO SIZE ON MOBILE --- */
     .logo {
-        max-width: 200px; /* Keep this - adjust value if needed */
-        /* REMOVE the height rule below */
-        /* height: calc(var(--header-height) - 30px); */
+        max-width: 200px;
     }
-    /* --- END LOGO ADJUSTMENT --- */
-
-} /* End of 992px media query */
-
-
-/* Desktop Header Adjustments */
-@media (min-width: 993px) {
-     .nav .mobile-cart-link {
-         display: none; /* Hide the mobile link in the desktop nav */
-     }
-     .header-controls > .original-cart-btn {
-         display: inline-block; /* Ensure original button is shown */
-     }
-     /* Ensure logo reverts to default on desktop if needed */
-     /* .logo { max-width: 300px; height: calc(var(--header-height) - 20px); } */
-} /* End of 993px media query */
-
-
-/* Adjustments for very small screens */
-@media (max-width: 480px) {
-    /* This rule might be overridden by the 992px rule's max-width. */
-    /* Keep it if you need DIFFERENT sizing for very small screens, otherwise remove it. */
-    /* .logo { height: calc(var(--header-height) - 30px); max-width: 150px; } */
 }
 
-/* Main Content Wrapper (Use this inside .container on each page) */
-.main-content-wrapper {
-     width: 100%;
-     max-width: 1400px; /* Consistent max width */
-     padding: var(--content-gap); /* Add padding inside wrapper */
-     margin-top: 40px;
-     margin-bottom: 40px;
-     text-align: left;
-     /* Background for content readability over body background image */
-     background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
-     border-radius: var(--border-radius-md);
-     box-shadow: var(--box-shadow-md);
- }
+@media (min-width: 993px) {
+     .nav .mobile-cart-link {
+         display: none;
+     }
+     .header-controls > .original-cart-btn {
+         display: inline-block;
+     }
+}
 
-/* Headings */
+.main-content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    padding: var(--content-gap);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    /* background-color: rgba(255, 255, 255, 0.85); */ /* Comment out or remove this line */
+    background-color: rgba(255, 255, 255, 0.85);                      /* Add this line for full transparency */
+    /* Or, if you want it more transparent but not fully, use a lower alpha value: */
+    /* background-color: rgba(255, 255, 255, 0.2); */   /* Example: 20% opacity white */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-md); /* You might want to adjust or remove this if the background is fully transparent */
+}
+
+.background-home {
+    width: 100%;
+    max-width: 1400px;
+    padding: var(--content-gap);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    /* background-color: rgba(255, 255, 255, 0.85); */ /* Comment out or remove this line */
+    background-color: transparent;                      /* Add this line for full transparency */
+    /* Or, if you want it more transparent but not fully, use a lower alpha value: */
+    /* background-color: rgba(255, 255, 255, 0.2); */   /* Example: 20% opacity white */
+} 
+
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-color);
     margin-bottom: 0.75em;
     line-height: 1.3;
+    /* Default font-weights from browser or initial settings */
 }
 h1 { font-size: 2.5em; }
 h2 { font-size: 2em; }
 h3 { font-size: 1.5em; }
 h4 { font-size: 1.2em; }
 
-/* Paragraphs & Text */
 p {
     margin-bottom: 1em;
     color: var(--light-text-color);
 }
 
-/* Base Button Style */
 .btn,
 button[type="submit"],
 .snipcart-add-item,
@@ -285,8 +248,7 @@ button[type="submit"],
 .add-to-cart-btn,
 .filter-toggle-btn,
 .clear-all-btn,
-.snipcart-checkout /* Apply base styles to Snipcart checkout button */
- {
+.snipcart-checkout {
     background-color: transparent;
     color: var(--primary-color);
     padding: 11px 25px;
@@ -296,7 +258,7 @@ button[type="submit"],
     display: inline-block;
     text-align: center;
     font-size: var(--base-font-size);
-    font-weight: 500;
+    font-weight: 500; /* Original button font weight */
     text-decoration: none;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
     margin: 0;
@@ -310,8 +272,7 @@ button[type="submit"]:hover,
 .add-to-cart-btn:hover,
 .filter-toggle-btn:hover,
 .clear-all-btn:hover,
-.snipcart-checkout:hover /* Apply hover styles */
- {
+.snipcart-checkout:hover {
     background-color: var(--primary-hover-color);
     color: var(--button-text-hover);
     border-color: var(--primary-hover-color);
@@ -319,7 +280,6 @@ button[type="submit"]:hover,
     box-shadow: var(--box-shadow-sm);
 }
 
-/* Primary Button Style Variation */
 .btn-primary,
 .contact-us-form button[type="submit"] {
     background-color: var(--primary-color);
@@ -331,200 +291,70 @@ button[type="submit"]:hover,
     border-color: var(--primary-hover-color);
 }
 
-/* Specific Button Layouts */
 .contact-us-form button[type="submit"] {
      display: block;
      width: fit-content;
      margin: 20px auto 0 auto;
 }
-/* Button alignment handled within card styles below */
-
-/* Snipcart button adjustments */
 .snipcart-checkout {
-    padding: 8px 15px; /* Slightly smaller padding for header button */
+    padding: 8px 15px;
     font-size: var(--small-font-size);
 }
 
-
-/* Contact Form Styles */
 .contact-us-form {
     max-width: 600px;
     margin: 0 auto;
-    padding: var(--content-gap); /* Restore padding for inner section */
+    padding: var(--content-gap);
     text-align: left;
-    /* Background/shadow removed - handled by main-content-wrapper */
     background-color: transparent;
     box-shadow: none;
 }
-
 .contact-us-form h2 {
     text-align: center;
     margin-bottom: var(--content-gap);
     color: var(--text-color);
 }
-
-.form-group {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.form-group label, .form-group legend {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--light-text-color);
-    font-weight: 500;
-}
-
-fieldset.form-group {
-    border: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
-}
-
-.form-input-row {
-    display: flex;
-    gap: 15px;
-}
-
+.form-group { margin-bottom: 20px; position: relative; }
+.form-group label, .form-group legend { display: block; margin-bottom: 8px; color: var(--light-text-color); font-weight: 500; }
+fieldset.form-group { border: none; padding: 0; margin: 0; margin-bottom: 20px; }
+.form-input-row { display: flex; gap: 15px; }
 .form-input-row .form-group { margin-bottom: 0; flex: 1;}
-
-.form-control {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
-    box-sizing: border-box;
-    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    font-family: inherit;
-    font-size: var(--base-font-size);
-    background-color: var(--body-bg);
-}
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px var(--focus-ring-color);
-}
-
-textarea.form-control {
-    min-height: 150px;
-    resize: vertical;
-}
-
-/* Visually Hidden Class */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Form Validation Styles */
-.form-control.invalid-input {
-    border-color: var(--error-color);
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
-}
-.error-message {
-    color: var(--error-color);
-    font-size: var(--x-small-font-size);
-    margin-top: 5px;
-    display: none;
-}
-.form-control.invalid-input + .error-message,
-.form-input-row.invalid-row + .error-message {
-    display: block;
-}
+.form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); box-sizing: border-box; transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; font-family: inherit; font-size: var(--base-font-size); background-color: var(--body-bg); }
+.form-control:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 3px var(--focus-ring-color); }
+textarea.form-control { min-height: 150px; resize: vertical; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.form-control.invalid-input { border-color: var(--error-color); box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2); }
+.error-message { color: var(--error-color); font-size: var(--x-small-font-size); margin-top: 5px; display: none; }
+.form-control.invalid-input + .error-message, .form-input-row.invalid-row + .error-message { display: block; }
 .form-input-row + .error-message { display: block; margin-top: 5px; visibility: hidden; }
 .form-input-row.invalid-row + .error-message { visibility: visible; }
+.form-status-message { margin-top: 20px; padding: 15px; border-radius: var(--border-radius-sm); text-align: center; display: none; }
+.form-status-message.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: block; }
+.form-status-message.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: block; }
+@media (max-width: 768px) { .form-input-row { flex-direction: column; gap: 0; } .form-input-row .form-group { margin-bottom: 20px; } }
 
-/* Form Success/Error Message Area */
-.form-status-message {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: var(--border-radius-sm);
-    text-align: center;
-    display: none;
-}
-.form-status-message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    display: block;
-}
-.form-status-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    display: block;
-}
+.projects-section { text-align: center; background-color: transparent; box-shadow: none; padding: 0; }
+.projects-heading { text-align: center; margin-bottom: var(--content-gap); }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--content-gap); justify-content: center; }
 
-/* Contact Form Media Query */
-@media (max-width: 768px) {
-    .form-input-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    .form-input-row .form-group {
-        margin-bottom: 20px;
-    }
-}
-
-/* Projects Page Styles */
-.projects-section {
-    text-align: center;
-    /* Background/shadow removed - handled by main-content-wrapper */
-    background-color: transparent;
-    box-shadow: none;
-    padding: 0; /* Rely on wrapper padding */
-}
-
-.projects-heading {
-    text-align: center;
-    margin-bottom: var(--content-gap);
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--content-gap);
-    justify-content: center;
-}
-
-/* --- START: Updated Modern Card Styles --- */
-
-/* === Apply to BOTH .product-card and .project-card === */
 .product-card,
-.project-card {
-    background-color: var(--body-bg);
-    /* --- Slightly softer corners --- */
-    border-radius: 12px; /* Increased from 8px */
-    /* --- Softer, slightly diffused shadow --- */
+.project-card { /* Explore card had its own rules initially */
+    background-color: var(--body-bg); /* Solid white */
+    border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.06), 0 5px 10px rgba(0,0,0,0.04);
     border: 1px solid transparent;
-    /* --- Add slightly more internal padding --- */
-    padding: 20px; /* Increased from 15px */
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    /* --- Add overflow hidden to contain image scale --- */
     overflow: hidden;
     height: 100%;
-    /* --- Smoother transition timing --- */
-    transition: transform 0.4s ease-in-out, /* Smoother timing */
-                box-shadow 0.4s ease-in-out,
-                border-color 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    
 }
 
 .product-card:hover,
 .project-card:hover {
-    /* --- Keep lift, remove scale from card itself --- */
     transform: translateY(-5px);
-    /* --- More pronounced shadow on hover --- */
     box-shadow: 0 5px 10px rgba(0,0,0,0.08), 0 15px 25px rgba(0,0,0,0.06);
     border-color: var(--primary-color);
 }
@@ -532,91 +362,70 @@ textarea.form-control {
 .product-card img,
 .project-card img {
     width: 100%;
-    /* --- Match card corner radius --- */
-    border-radius: var(--border-radius-sm); /* Or match card's 12px if preferred */
-    margin-bottom: 20px; /* Increased space below image */
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 20px;
     object-fit: cover;
     background-color: #eee;
     display: block;
-    /* --- Add transition for image scaling --- */
     transition: transform 0.4s ease-in-out;
 }
 
-/* --- Add subtle image zoom on card hover --- */
 .product-card:hover img,
 .project-card:hover img {
     transform: scale(1.05);
 }
 
-/* Container for text content */
 .product-info,
-.project-card > h3, /* Apply common styles directly if structure is simple */
-.project-card > p {
+.project-card > h3, .project-card > p {
     text-align: center;
     flex-grow: 1;
-    display: flex;
+    display: flex; /* This was likely the original state for these card text wrappers */
     flex-direction: column;
-    padding-top: 0; /* Removed padding here as card padding increased */
+    padding-top: 0;
 }
 
-/* Card Titles */
-.product-card h3,
-.project-card h3 {
-    font-size: 1.2em; /* Slightly larger title */
-    margin-bottom: 10px; /* Adjusted margin */
+.product-card h3, .project-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
     color: var(--text-color);
-    font-weight: 600;
+    font-weight: 600; /* Card titles were likely semi-bold initially */
 }
 
-/* Description Text */
-.product-card .product-price, /* Grouping for common styles */
+.product-card .product-price,
 .project-card p {
-    margin-bottom: 20px; /* Increased space before button */
-    color: var(--light-text-color);
+    margin-bottom: 20px;
+    color: var(--light-text-color); /* Original paragraph color */
     flex-grow: 1;
-    line-height: 1.5; /* Improved readability for descriptions */
+    line-height: 1.5;
 }
 
-/* Specific Product Price Styling */
 .product-price {
-    font-size: 1.2em; /* Match title size or adjust */
+    font-size: 1.2em;
     color: var(--primary-color);
-    font-weight: 700;
+    font-weight: 700; /* Original product price weight */
 }
 
-/* Modern Button Style (Example: Pill shape) */
 .project-card .learn-more-btn,
 .product-card .add-to-cart-btn {
     margin-top: auto;
     align-self: center;
-    width: auto; /* Let padding define width */
-    min-width: 150px; /* Ensure minimum width */
+    width: auto;
+    min-width: 150px;
     max-width: 220px;
     display: block;
-    margin-bottom: 0; /* Removed bottom margin as card padding increased */
-    padding: 10px 25px; /* Adjust padding */
-    /* --- Pill shape --- */
+    margin-bottom: 0;
+    padding: 10px 25px;
     border-radius: 50px;
-    /* --- Subtle initial state --- */
     opacity: 0.95;
-    transition: background-color var(--transition-speed) ease-in-out,
-                color var(--transition-speed) ease-in-out,
-                transform 0.2s ease-in-out,
-                box-shadow var(--transition-speed) ease-in-out,
-                opacity var(--transition-speed) ease-in-out; /* Add opacity transition */
+    /* Transitions inherited from .btn */
 }
 
-/* Enhance button on card hover */
 .product-card:hover .add-to-cart-btn,
 .project-card:hover .learn-more-btn {
     opacity: 1;
-    /* Optional: Add slight scale effect to button too */
-    /* transform: scale(1.03); */
 }
 
-/* Keep Out of Stock Styles */
 .product-card[data-availability="out-of-stock"] .add-to-cart-btn {
-    /* Styles remain the same */
     background-color: var(--lighter-text-color);
     border-color: var(--lighter-text-color);
     color: #fff;
@@ -625,420 +434,285 @@ textarea.form-control {
     opacity: 0.7;
 }
 .product-card[data-availability="out-of-stock"]::after {
-    /* Styles remain the same */
-    content: "Out of Stock";
-    position: absolute;
-    top: 15px; /* Adjust position due to increased padding */
-    right: 15px;
-    background-color: rgba(100, 100, 100, 0.8);
-    color: white;
-    padding: 3px 8px;
-    border-radius: var(--border-radius-sm);
-    font-size: var(--x-small-font-size);
-    font-weight: 500;
+    content: "Out of Stock"; position: absolute; top: 15px; right: 15px;
+    background-color: rgba(100, 100, 100, 0.8); color: white; padding: 3px 8px;
+    border-radius: var(--border-radius-sm); font-size: var(--x-small-font-size); font-weight: 500;
 }
-/* --- END: Updated Modern Card Styles --- */
+.coming-soon-card { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 200px; color: var(--light-text-color); background-color: var(--body-bg); }
 
 
-/* Products Page Specific Styles */
-.products-page-layout {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: var(--content-gap);
-    align-items: flex-start;
-    /* Ensure transparent background */
-    background-color: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-    max-width: none; /* Allow to fill wrapper */
+.products-page-layout { display: flex; flex-wrap: nowrap; gap: var(--content-gap); align-items: flex-start; background-color: transparent; border-radius: 0; box-shadow: none; padding: 0; max-width: none; }
+.filter-sidebar { flex: 0 0 var(--sidebar-width); background-color: #fff; padding: 15px; border-radius: var(--border-radius-md); box-shadow: var(--box-shadow-sm); text-align: left; height: fit-content; position: sticky; top: calc(var(--header-height) + 15px); max-height: calc(100vh - var(--header-height) - 30px); overflow-y: auto; }
+.filter-sidebar h2 { font-size: 1.3em; margin-bottom: 15px; color: var(--text-color); border-bottom: none; padding-bottom: 0; font-weight: 600; }
+.filter-group { margin-bottom: 20px; padding-top: 10px; border-top: 1px solid #eee; }
+.filter-group:first-of-type { border-top: none; padding-top: 0; }
+.filter-group h3 { font-size: 1em; margin-bottom: 12px; color: var(--light-text-color); font-weight: 500; }
+.filter-options { display: flex; flex-direction: column; gap: 8px; }
+.filter-options label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: var(--small-font-size); color: var(--text-color); }
+.filter-options label:hover { color: var(--primary-color); }
+.price-range-filter { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 5px 10px; }
+.price-range-filter label { margin-bottom: 0; font-size: var(--small-font-size); color: var(--light-text-color); text-align: right; }
+.price-range-filter input[type="number"] { padding: 6px 8px; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); width: 100%; max-width: 100px; font-family: inherit; text-align: right; font-size: var(--small-font-size); -moz-appearance: textfield; background-color: var(--body-bg); }
+.price-range-filter input[type="number"]::-webkit-outer-spin-button, .price-range-filter input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.price-range-filter input[type="number"]:focus { border-color: var(--primary-color); outline: none; }
+.filter-toggle-btn { display: none; margin-bottom: 20px; width: 100%; }
+.products-main-content { flex: 1; min-width: 0; }
+.products-header { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+.products-heading { text-align: left; margin-bottom: 15px; }
+.products-controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; min-height: 38px; }
+.active-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; flex-grow: 1; }
+.active-filter-tag { background-color: #e0e0e0; padding: 4px 10px; border-radius: var(--border-radius-sm); font-size: var(--x-small-font-size); display: flex; align-items: center; gap: 6px; }
+.active-filter-tag button { background: none; border: none; color: var(--light-text-color); cursor: pointer; font-size: 1.2em; line-height: 1; padding: 0 2px; }
+.active-filter-tag button:hover { color: var(--error-color); }
+.clear-all-btn { background: none; border: none; color: var(--primary-color); cursor: pointer; font-size: var(--x-small-font-size); text-decoration: underline; padding: 5px; margin-left: 5px; }
+.clear-all-btn:hover { color: var(--primary-hover-color); }
+.sort-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.sort-controls span { font-size: var(--small-font-size); color: var(--light-text-color); white-space: nowrap; }
+#product-count-display { font-weight: 500; color: var(--light-text-color); }
+.sort-controls select { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); background-color: var(--body-bg); font-family: inherit; font-size: var(--small-font-size); cursor: pointer; }
+.sort-controls select:focus { border-color: var(--primary-color); outline: none; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--content-gap); }
+.no-products-message { text-align: center; padding: 40px 20px; color: var(--light-text-color); grid-column: 1 / -1; background-color: rgba(255, 255, 255, 0.8); border-radius: var(--border-radius-sm); }
+.scroll-fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; will-change: opacity, transform; }
+.scroll-fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 992px) { .products-page-layout { flex-direction: column; } .filter-sidebar { position: static; width: 100%; margin-bottom: var(--content-gap); max-height: none; overflow-y: visible; top: auto; } .products-main-content { width: 100%; } .products-controls { flex-direction: column; align-items: stretch; } .sort-controls { justify-content: flex-end; } .active-filters { justify-content: flex-start; order: 1; } .sort-controls { order: 2; } .product-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
+@media (max-width: 768px) { .main-content-wrapper { padding: 15px; margin-top: 20px; } .product-grid { gap: 15px; } .project-grid { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } }
+
+.about-us-content { max-width: 800px; margin: 0 auto; padding: 0; background-color: transparent; box-shadow: none; text-align: left; }
+.about-us-content h2 { text-align: center; margin-bottom: 20px; }
+
+/* --- START: Homepage Enhancements (as added when new layout was introduced) --- */
+.homepage-content { /* This class is on .main-content-wrapper on index.html */
+    /* It inherits base .main-content-wrapper styles, including its background */
+    padding-top: 10px; /* Reduced from original example, as .main-content-wrapper has margin-top */
+    padding-bottom: 30px;
+    text-align: center; /* Default text align for sections within */
 }
 
-/* === Filter Sidebar Cleanup Starts === */
-.filter-sidebar {
-    flex: 0 0 var(--sidebar-width);
-    background-color: #fff;         /* CHANGE: Cleaner white background */
-    padding: 15px;                  /* CHANGE: Reduce overall padding */
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--box-shadow-sm);
-    text-align: left;
-    height: fit-content;
-    position: sticky; /* Keep sticky positioning */
-    top: calc(var(--header-height) + 15px); /* Adjust sticky top gap slightly */
-    max-height: calc(100vh - var(--header-height) - 30px); /* Adjust max-height */
-    overflow-y: auto;
+.hero-welcome {
+    margin-bottom: 50px;
+    padding: 0 20px; /* Add horizontal padding for text */
 }
 
-.filter-sidebar h2 {
-    font-size: 1.3em;               /* CHANGE: Slightly smaller main title */
-    margin-bottom: 15px;            /* CHANGE: Reduce space below title */
+.hero-welcome h1 {
+    font-size: 2.6em; /* Initial font size for new hero */
     color: var(--text-color);
-    border-bottom: none;            /* REMOVE: Remove the bottom border */
-    padding-bottom: 0;              /* REMOVE: Remove padding associated with border */
-    font-weight: 600;               /* Optional: Make slightly bolder */
+    margin-bottom: 0.5em;
+    /* font-weight was browser default or inherited at this stage */
 }
 
-.filter-group {
-    margin-bottom: 20px;            /* CHANGE: Reduce space between filter groups */
-    padding-top: 10px;              /* Optional: Add small top padding */
-    border-top: 1px solid #eee;    /* Optional: Add a very light top border */
-}
-.filter-group:first-of-type {
-    border-top: none;               /* REMOVE: Top border for first group */
-    padding-top: 0;
-}
-
-.filter-group h3 {
-    font-size: 1em;                 /* CHANGE: Smaller group titles */
-    margin-bottom: 12px;            /* CHANGE: Reduce space below group title */
+.hero-welcome .tagline {
+    font-size: 1.2em;
     color: var(--light-text-color);
-    font-weight: 500;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
 }
 
-.filter-options {
+.explore-sisu {
+    margin-bottom: 50px;
+}
+
+.explore-sisu h2 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--content-gap);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.explore-card {
+    background-color: rgba(255, 255, 255, 0.65); /* Will be solid white at this stage */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow-md);
+    padding: 25px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 8px;                       /* CHANGE: Slightly reduce gap */
-}
-
-.filter-options label {
-    display: flex;
     align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: var(--small-font-size);
-    color: var(--text-color);
-}
-.filter-options label:hover {
-    color: var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Price Range Filter */
-.price-range-filter {
-    display: grid;                  /* CHANGE: Use grid */
-    grid-template-columns: auto 1fr; /* Label | Input */
-    align-items: center;
-    gap: 5px 10px; /* Row gap | Column gap */
+.explore-card:hover {
+    transform: translateY(-5px); /* Original simple hover for explore cards */
+    box-shadow: var(--box-shadow-lg);
 }
 
-.price-range-filter label {
-     margin-bottom: 0;
-     font-size: var(--small-font-size);
-     color: var(--light-text-color);
-     text-align: right;             /* CHANGE: Align labels right */
-}
-
-.price-range-filter input[type="number"] {
-    padding: 6px 8px;
-    border: 1px solid var(--border-color);
+.explore-card-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
     border-radius: var(--border-radius-sm);
-    width: 100%;                    /* CHANGE: Fill grid cell */
-    max-width: 100px;               /* Optional: Limit max width */
-    font-family: inherit;
-    text-align: right;
-    font-size: var(--small-font-size);
-    -moz-appearance: textfield;
-}
-.price-range-filter input[type="number"]::-webkit-outer-spin-button,
-.price-range-filter input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none; margin: 0;
-}
-.price-range-filter input[type="number"]:focus {
-     border-color: var(--primary-color); outline: none;
-}
-/* === Filter Sidebar Cleanup Ends === */
-
-/* Filter Toggle Button (for Mobile) */
-.filter-toggle-btn {
-    display: none;
     margin-bottom: 20px;
+    background-color: #eee; /* Placeholder background */
+}
+
+.explore-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-weight: 600; /* Explore card titles were likely semi-bold */
+}
+
+.explore-card p {
+    font-size: 1em;
+    color: var(--light-text-color);
+    margin-bottom: 20px;
+    flex-grow: 1; /* To push button down */
+    /* line-height, etc., inherited from general p or card text rules */
+    /* display:flex was NOT on p tags at this initial stage for homepage cards */
+}
+
+.explore-card .btn {
+    margin-top: auto; /* Pushes button to the bottom */
+    width: auto;
+    min-width: 150px;
+}
+
+/* Add this to your styles.css file */
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--content-gap);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    align-items: start; /* Important for when cards have different heights or margins */
+}
+
+.explore-card:nth-child(even) {
+    margin-top: 30px; /* Adjust this value to control the offset amount */
+}
+
+/* Optional: If you want the offset to only apply on larger screens */
+@media (max-width: 600px) { /* Adjust breakpoint as needed */
+    .explore-card:nth-child(even) {
+        margin-top: 0; /* Reset margin on smaller screens if cards stack vertically */
+    }
+}
+
+.contact-prompt {
+    padding: 40px 20px;
+    background-color: rgba(249, 249, 249, 0.9); /* Original semi-transparent background */
+    border-radius: var(--border-radius-md);
+    max-width: 900px;
+    margin: 50px auto 0 auto;
+    box-shadow: var(--box-shadow-sm);
+}
+
+.contact-prompt h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.contact-prompt p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: var(--light-text-color);
+}
+/* --- END: Homepage Enhancements --- */
+
+
+
+/* In your styles.css file */
+
+.site-footer {
+    /* background-color: #282828; */ /* Comment out or remove previous background color */
+    background-color: transparent;   /* Make footer background transparent */
+    color: #f0f0f0;                  /* CHANGE: Default text color to light for readability */
+    padding: 15px var(--content-gap);
+    text-align: center;
+    margin-top: auto;
+    /* border-top: 1px solid #444; */ /* CONSIDER: This border might look odd on a transparent bg. */
+                                      /* You might want to change its color or remove it: */
+    border-top: none; /* Example: semi-transparent white border */
+    /* Or: border-top: none; */
     width: 100%;
 }
 
-/* Main Products Content Area */
-.products-main-content {
-    flex: 1;
-    min-width: 0;
+.footer-nav a {
+    color: #d0d0d0; /* CHANGE: Link color to light gray/off-white */
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 0.85em;
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADD: Text shadow for readability */
 }
 
-/* Products Header within Main Content */
-.products-header {
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 15px;
-}
-
-.products-heading {
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.products-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    min-height: 38px;
-}
-
-/* Active Filters Display */
-.active-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    flex-grow: 1;
-}
-
-.active-filter-tag {
-    background-color: #e0e0e0;
-    padding: 4px 10px;
-    border-radius: var(--border-radius-sm);
-    font-size: var(--x-small-font-size);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.active-filter-tag button {
-    background: none; border: none;
-    color: var(--light-text-color);
-    cursor: pointer;
-    font-size: 1.2em;
-    line-height: 1;
-    padding: 0 2px;
-}
-.active-filter-tag button:hover { color: var(--error-color); }
-
-.clear-all-btn {
-    background: none; border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    font-size: var(--x-small-font-size);
+.footer-nav a:hover,
+.footer-nav a:focus {
+    color: #ffffff; /* CHANGE: Hover to white */
     text-decoration: underline;
-    padding: 5px; margin-left: 5px;
-}
-.clear-all-btn:hover { color: var(--primary-hover-color); }
-
-/* Sort Controls */
-.sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
 }
 
-.sort-controls span {
-    font-size: var(--small-font-size);
-    color: var(--light-text-color);
-    white-space: nowrap;
+.copyright {
+    font-size: 0.8em;
+    color: #b0b0b0;   /* CHANGE: Copyright text to a lighter gray */
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* ADD: Text shadow for readability */
 }
 
-#product-count-display {
-     font-weight: 500;
-     color: var(--light-text-color);
-}
-
-.sort-controls select {
-    padding: 8px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
-    background-color: var(--body-bg);
-    font-family: inherit;
-    font-size: var(--small-font-size);
-    cursor: pointer;
-}
-.sort-controls select:focus {
-     border-color: var(--primary-color); outline: none;
-}
-
-/* Product Grid */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--content-gap);
-}
-
-/* No Products Message */
-.no-products-message {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--light-text-color);
-    grid-column: 1 / -1;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: var(--border-radius-sm);
-}
-
-/* Scroll animation styles */
-.scroll-fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, transform;
-}
-.scroll-fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Responsive Adjustments for Products Page */
-@media (max-width: 992px) {
-    .products-page-layout {
-        flex-direction: column;
-    }
-    .filter-sidebar {
-        position: static; /* Sidebar no longer sticky on mobile */
-        width: 100%;
-        margin-bottom: var(--content-gap);
-        max-height: none;
-        overflow-y: visible;
-        top: auto; /* Reset top property */
-         /* display: none; */ /* Optional: Hide by default */
-    }
-    /* Optional: Style to show sidebar when active */
-    /* .filter-sidebar.active { display: block; } */
-
-    .products-main-content { width: 100%; }
-    .products-controls { flex-direction: column; align-items: stretch; }
-    .sort-controls { justify-content: flex-end; }
-    .active-filters { justify-content: flex-start; order: 1; }
-    .sort-controls { order: 2; }
-
-    /* Optional: Show filter toggle button */
-    /* .filter-toggle-btn { display: block; order: 0; } */
-
-    .product-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-} /* End 992px query for products page */
-
-/* Responsive Adjustments for General Layout and Projects */
+/* Ensure responsive styles for footer text also maintain readability */
 @media (max-width: 768px) {
-     /* No change needed for container padding-top based on fixed header */
-     .main-content-wrapper {
-        padding: 15px;
-        margin-top: 20px;
-        /* background-color: rgba(255, 255, 255, 0.9); */
-     }
-
-    .product-grid { gap: 15px; }
-    .project-grid { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } /* Adjust project grid too */
-
-} /* End 768px query */
-
-/* About Us Page Simple Styles */
-.about-us-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0; /* Rely on wrapper padding */
-    /* Background/shadow removed */
-    background-color: transparent;
-    box-shadow: none;
-    text-align: left;
-}
-.about-us-content h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    .site-footer {
+        padding: 10px 15px;
+        /* border-top color might also need responsive consideration if very different from desktop */
+    }
+    .footer-nav a {
+        margin: 0 5px 8px 5px;
+        display: inline-block;
+        font-size: 0.85em;
+        /* text-shadow should carry over or be explicitly defined if different */
+    }
+    .copyright {
+        font-size: 0.75em;
+        /* text-shadow should carry over */
+    }
 }
 
-/* Homepage Hero Section Styles */
-.hero-section {
-    text-align: center;
-    padding: 60px 20px; /* Restore hero padding */
-    /* Background/shadow removed */
-    background-color: transparent;
-    box-shadow: none;
-}
-
-.hero-section h1 {
-    font-size: 2.8em;
-    color: var(--text-color);
-    margin-bottom: 15px;
-}
-
-.hero-section p {
-    font-size: 1.2em;
-    color: var(--light-text-color);
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-section .btn {
-    margin: 0 10px;
-    padding: 12px 30px;
-    font-size: 1.1em;
-}
-
-/* Responsive adjustments for hero */
+/* Responsive adjustments for footer (if they existed before, ensure they still work or adjust) */
 @media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.2em;
+    .site-footer {
+        padding: 10px 15px; /* Adjust padding for mobile */
     }
-    .hero-section p {
-        font-size: 1.1em;
+    .footer-nav a {
+        margin: 0 5px 8px 5px; /* Adjust for wrapping links */
+        display: inline-block;
+        font-size: 0.85em; /* Ensure font size is still readable but small */
     }
-    .hero-section .btn {
-        margin-bottom: 15px;
-        display: block;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+    .copyright {
+        font-size: 0.75em; /* Further reduce if needed on mobile */
     }
-    .hero-section .btn:last-child {
-        margin-bottom: 0;
-    }
-} /* End 768px query for hero */
+}
 
-/* ====================================== */
-/* START: Snipcart Overrides            */
-/* ====================================== */
 
-/* Ensure the main container Snipcart creates has a high z-index */
+/* Snipcart Overrides (were present in original styles) */
 .snipcart-layout__container {
-    z-index: 9999 !important; /* Keep higher than header (1000) */
+    z-index: 9999 !important;
 }
-
-/* Target the specific sidebar style container */
-/* Verify '.snipcart-layout__container--side' with browser DevTools */
 .snipcart-layout__container--side {
     position: fixed !important;
-    /* --- Adjust Top and Height --- */
-    top: var(--header-height) !important;    /* CHANGE: Start below the header */
-    height: calc(100% - var(--header-height)) !important; /* CHANGE: Adjust height */
-    /* --- Remove bottom: 0 --- */
-    /* bottom: 0 !important; */ /* REMOVED */
-    /* --- Keep Right, Width, etc. --- */
+    top: var(--header-height) !important;
+    height: calc(100% - var(--header-height)) !important;
     right: 0 !important;
-    width: 400px !important; /* Example width - adjust if needed */
+    width: 400px !important;
     max-width: 90vw !important;
     transform: none !important;
     margin: 0 !important;
     padding: 0 !important;
     z-index: 9999 !important;
 }
-
-/* Ensure the actual cart element within the sidebar is positioned correctly */
 .snipcart-cart--side {
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
 }
-
-
-/* If using dark mode, ensure sidebar colors are okay */
-@media (prefers-color-scheme: dark) {
-    /* Example: Ensure sidebar background is distinct */
-    /* Inspect the element to find the correct Snipcart class for the background */
-    /* .snipcart-layout__container--side { */
-         /* background-color: #2a2a2a !important; */ /* Example dark background */
-         /* color: var(--text-color) !important; */
-         /* border-left: 1px solid var(--border-color) !important; */
-    /* } */
-    /* Add more dark mode specific overrides for Snipcart elements if needed */
-}
-
-
-/* ====================================== */
-/* END: Snipcart Overrides              */
-/* ====================================== */

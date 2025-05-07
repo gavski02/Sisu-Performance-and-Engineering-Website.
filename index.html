@@ -3,21 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISU Performance and Engineering - Home</title> <meta name="description" content="SISU Performance & Engineering: Your source for high-quality performance auto parts, suspension components, and expert custom vehicle projects in Bend, OR.">
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
+    <title>SISU Performance and Engineering - Home</title>
+    <meta name="description" content="SISU Performance & Engineering: Your source for high-quality performance auto parts, suspension components, and expert custom vehicle projects in Bend, OR.">
+    <link rel="icon" type="image/png" href="assets/favicon.png"> <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://cdn.snipcart.com" />
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SISU Performance and Engineering",
+      "url": "https://sisupe.net/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://sisupe.net/?s={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "SiteNavigationElement",
+            "position": 1,
+            "name": "Home",
+            "url": "https://sisupe.net/index.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 2,
+            "name": "Products",
+            "url": "https://sisupe.net/products.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 3,
+            "name": "Projects",
+            "url": "https://sisupe.net/projects.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 4,
+            "name": "About",
+            "url": "https://sisupe.net/about.html"
+          },
+          {
+            "@type": "SiteNavigationElement",
+            "position": 5,
+            "name": "Contact",
+            "url": "https://sisupe.net/contact.html"
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 
     <div class="container">
         <header class="header-container">
             <div class="logo">
-                <img src="assets/logo.png" alt="SISU Logo">
+                <img src="assets/logo.png" alt="SISU Performance and Engineering Logo">
             </div>
             <div class="header-controls">
                 <nav class="nav">
@@ -39,18 +90,60 @@
             </div>
         </header>
 
-        <div>
-            <!--<section class="hero-section scroll-fade-in">
-                <h1>Performance Parts & Custom Projects</h1>
-                <p>Your source for high-quality automotive components and bespoke builds.</p>
-                <a href="products.html" class="btn">Shop Parts</a>
-                <a href="projects.html" class="btn btn-primary">View Projects</a>
-            </section>-->
+        <div class="background-home homepage-content">
+            <section class="hero-welcome scroll-fade-in">
+                <h1>SISU Performance and Engineering.</h1>
+                <p class="tagline">From our Bend, Oregon workshop, we deliver battle-tested parts and innovative solutions for niche and rally-inspired vehicles. We don't just design components; we prove them on the track. Ready to unleash your car's true potential?</p>
+            </section>
 
-            </div> </div> <div hidden id="snipcart" data-api-key="Y2RmMjZiYzktNTk3NS00ZTIzLWJlM2UtNGViNTBjZDA0OGU1NjM4Nzg1NTg1ODkyNjE5ODY1" data-cart-style="show-sidebar">
+            <section class="explore-sisu scroll-fade-in">
+                <div class="explore-grid">
+                    <div class="explore-card">
+                        <img src="assets/red_gtx_blog/Lind-Photo.webp" alt="SISU Custom Rally Vehicle Build" class="explore-card-img">
+                        <h3>Custom Builds</h3>
+                        <p>Follow our journey: from initial CAD designs to grueling rally stages. See how we develop and test innovative solutions for real-world performance.</p>
+                        <a href="projects.html" class="btn">View Projects</a>
+                    </div>
+                    <div class="explore-card">
+                        <img src="assets/Cad Image.webp" alt="SISU Race-Tested Performance Parts" class="explore-card-img">
+                        <h3>Performance Parts</h3>
+                        <p>Each part we offer is born from rigorous R&D and proven in the heat of competition. These are engineered solutions for enthusiasts demanding ultimate resilience from their specialized vehicles.</p>
+                        <a href="products.html" class="btn">Shop Parts</a>
+                    </div>
+                    <div class="explore-card">
+                        <img src="assets/infront of rally car.png" alt="The SISU Performance Engineering Team" class="explore-card-img">
+                        <h3>Who We Are</h3>
+                        <p>More than just a name, SISU Performance and Engineering is our approach. Learn about our Bend, Oregon team, our engineering passion, and our commitment to pushing boundaries for specialized vehicles.</p>
+                        <a href="about.html" class="btn">About Us</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-prompt scroll-fade-in">
+                <h2>Ready to Elevate Your Build?</h2>
+                <p>Connect with our Bend engineering team. Whether it's a query about our performance parts or a discussion about your next custom vehicle project, we're ready to talk shop.</p>
+                <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+            </section>
+        </div>
+
+        <footer class="site-footer scroll-fade-in">
+            <div class="footer-content">
+                <div class="footer-nav">
+                    <a href="index.html">Home</a> |
+                    <a href="products.html">Products</a> |
+                    <a href="projects.html">Projects</a> |
+                    <a href="about.html">About</a> |
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="copyright">&copy; <span id="current-year">2025</span> SISU Performance and Engineering. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <div hidden id="snipcart" data-api-key="Y2RmMjZiYzktNTk3NS00ZTIzLWJlM2UtNGViNTBjZDA0OGU1NjM4Nzg1NTg1ODkyNjE5ODY1" data-cart-style="show-sidebar">
     </div>
     <script defer src="https://cdn.snipcart.com/themes/v3.4.1/default/snipcart.js"></script>
-
     <script src="script.js"></script>
 </body>
 </html>
