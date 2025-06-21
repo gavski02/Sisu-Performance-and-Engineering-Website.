@@ -362,6 +362,7 @@ textarea.form-control { min-height: 150px; resize: vertical; }
 .product-card img,
 .project-card img {
     width: 100%;
+    height: 200px; /* Add this line to enforce a uniform height */
     border-radius: var(--border-radius-sm);
     margin-bottom: 20px;
     object-fit: cover;
